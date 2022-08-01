@@ -1,0 +1,48 @@
+version: '3.1'
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      args:
+        APP_ENV: development
+    user: 1000:1000
+    container_name: qr_codes_app
+    restart: unless-stopped
+    tty: true
+    environment:
+      APP_ENV: development
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+      XDEBUG_CONFIG: "client_host=192.168.221.1 client_port=9003 idekey=PHPSTORM-CASH-DESK"
+      PHP_IDE_CONFIG: 'serverName=Docker'
+    working_dir: /code
+    volumes:
+      - ./:/code
+    networks:
+      - app-network
+
+  webserver:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    user: root
+    container_name: qr_codes_webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8700:8080"
+    volumes:
+      - ./public:/code/public
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.222.0/28
