@@ -19,7 +19,7 @@ class App
             $generator = new QRGenerator();
             echo json_encode($generator->generateQrCode($_POST['url']));
         } else {
-            require 'form.php';
+            require 'form.html';
         }
     }
 }
