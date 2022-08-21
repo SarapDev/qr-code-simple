@@ -22,18 +22,8 @@ class QRGenerator
         $qrCode = new QRCode();
         $data = $qrCode->render($url);
 
-        list($type, $data) = explode(';', $data);
-        list(,$data) = explode(',', $data);
-
-        $data = base64_decode($data);
-
-        $fileExt = explode('/', $type)[1];
-        $fileName = 'tmp/code_' . time() . '.' . $fileExt;
-
-        file_put_contents($fileName, $data);
-
         return [
-            'url' => "http://" . $_SERVER['HTTP_HOST'] . '/' . $fileName
+            'base64' => $data,
         ];
     }
 }

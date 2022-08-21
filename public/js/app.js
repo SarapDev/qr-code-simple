@@ -3,7 +3,7 @@ const btn = document.querySelector('button');
 // Метод обработки запроса и генерации изображения
 function handleResponse(data) {
     let img = document.createElement("img");
-    img.src = JSON.parse(data).url
+    img.src = JSON.parse(data).base64
     let src = document.getElementById("qr-code")
     src.appendChild(img)
 }
