@@ -9,9 +9,15 @@
 <body>
 <div class="container">
     <form id="url" onSubmit="return false;">
-        <div class="mb-3">
-            <label for="url" class="form-label">URL</label>
-            <input type="url" class="form-control" id="url_field" name="url">
+        <div class="row mt-5 mb-3">
+            <div class="col">
+                <label for="url" class="form-label">URL</label>
+                <input type="url" class="form-control" id="url_field" name="url" placeholder="URL" aria-label="URL">
+            </div>
+            <div class="col-2">
+                <label for="url" class="form-label">Size</label>
+                <input type="number" class="form-control" id="size" placeholder="Size" aria-label="Size" value="10">
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

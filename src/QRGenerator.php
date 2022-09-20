@@ -3,6 +3,7 @@
 namespace Src;
 
 use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 use JetBrains\PhpStorm\ArrayShape;
 
 /**
@@ -16,10 +17,11 @@ class QRGenerator
      * @param string $url
      * @return string[]
      */
-    #[ArrayShape(['url' => "string"])]
-    public function generateQrCode(string $url): array
+    #[ArrayShape(['base64' => "string"])]
+    public function generateQrCode(string $url, int $size): array
     {
-        $qrCode = new QRCode();
+        $QROptions = new QROptions(['scale' => $size]);
+        $qrCode = new QRCode($QROptions);
         $data = $qrCode->render($url);
 
         return [

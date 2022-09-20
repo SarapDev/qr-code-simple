@@ -17,7 +17,7 @@ class App
     {
         if ($_SERVER['REQUEST_URI'] === '/generate' && $_POST) {
             $generator = new QRGenerator();
-            echo json_encode($generator->generateQrCode($_POST['url']));
+            echo json_encode($generator->generateQrCode($_POST['url'], (int) $_POST['size']));
         } else {
             require 'form.html';
         }

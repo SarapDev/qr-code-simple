@@ -37,5 +37,5 @@ function sendData(data, getData) {
 }
 
 btn.addEventListener('click', () => {
-    sendData({ url: document.getElementById("url_field").value }, handleResponse);
+    sendData({ url: document.getElementById("url_field").value, size: document.getElementById("size").value}, handleResponse);
 });
